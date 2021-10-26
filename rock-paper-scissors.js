@@ -1,4 +1,22 @@
+const btn = querySelectorAll('button')
 
+function getPlayerSelection() {
+    if(this.id == 'rock')
+    {
+        return 'rock';
+    }
+    else if(this.id == 'paper')
+    {
+        return 'paper';
+    }
+
+    return 'scissors';
+}
+
+
+const rockButton = querySelector('#rock');
+const paperButton = querySelector('#paper');
+const scissorsButton = querySelector('#scissors');
 
 function computerPlay()
 {
@@ -43,13 +61,9 @@ function playRound (playerSelection, computerSelection)
 //the case is the computer wins or you win, or it's a tie
 function game()
 {
-    let playerSelection = prompt('Rock, Paper, or Scissors');
+    playerSelection = 'rock';
+    //let playerSelection = prompt('Rock, Paper, or Scissors');
     let computerSelection = computerPlay();
     playRound(playerSelection, computerSelection);
 
-}
-
-for(let i = 0; i < 5; i++)
-{
-    game();
 }

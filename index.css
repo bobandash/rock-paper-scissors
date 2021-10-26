@@ -1,0 +1,56 @@
+
+
+
+* {
+    text-align: center;
+    font-family: 'Comfortaa','Arial','San-serif';
+    color: white;
+    background-color: black;
+}
+
+h1{
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    border: 5px black;
+    width: 100%;
+}
+
+#fate-text {
+    padding-top: 2px;
+    margin-top: 2px;
+}
+
+#title-text{
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+}
+
+#terms-text{
+    font-size: 34px;
+}
+
+
+.red-color{
+    color: red;
+}
+
+
+button {
+    background-color: gray;
+}
+
+button:hover{
+    transform: scale(1.2);
+}
+
+img {
+    background-color: white;
+    background-size: cover;
+    height: 200px;
+    width: 200px;
+}   
