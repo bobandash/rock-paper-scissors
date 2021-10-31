@@ -34,11 +34,15 @@ h1{
     font-size: 34px;
 }
 
-
 .red-color{
     color: red;
 }
 
+.rounds-text{
+    font-size: 30px;
+    font-family: 'Comfortaa','Arial','San-serif';
+    padding-top: 30px;   
+}
 
 button {
     background-color: gray;

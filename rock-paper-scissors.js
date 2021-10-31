@@ -1,22 +1,46 @@
-const btn = querySelectorAll('button')
+//running the rps button functionality
+const btn = document.querySelectorAll('button');
+let playerRoundsWon = 0;
+let computerRoundsWon = 0;
+const body = document.querySelector('body');
+const roundResults = document.createElement('div');
+const scoreKeeperDiv = document.createElement('div');
+roundResults.classList.add('rounds-text');
+scoreKeeperDiv.classList.add('rounds-text');
 
-function getPlayerSelection() {
-    if(this.id == 'rock')
-    {
-        return 'rock';
-    }
-    else if(this.id == 'paper')
-    {
-        return 'paper';
-    }
+body.appendChild(roundResults);
+body.appendChild(scoreKeeperDiv);
 
-    return 'scissors';
-}
-
-
-const rockButton = querySelector('#rock');
-const paperButton = querySelector('#paper');
-const scissorsButton = querySelector('#scissors');
+btn.forEach((button) => {
+        button.addEventListener('click', () => {
+            if(playerRoundsWon < 5 && computerRoundsWon < 5){
+                if (button.id == 'rock'){
+                    roundResults.innerText = playRound ('rock',computerPlay());
+                }
+                else if (button.id == 'paper')
+                {
+                    roundResults.innerText = playRound ('paper',computerPlay());
+                }
+                else
+                {
+                    roundResults.innerText = playRound ('scissors',computerPlay());
+                }
+                if(playerRoundsWon == 5 || computerRoundsWon == 5)
+                {
+                    if(playerRoundsWon == 5)
+                    {
+                        scoreKeeperDiv.innerText = 'Good Game! You saved the world!'
+                        scoreKeeperDiv.style.cssText = 'color:yellowgreen';
+                    }
+                    else
+                    {
+                        scoreKeeperDiv.innerText = 'The World is Destroyed and Run by Computers. Good Bye.'
+                        scoreKeeperDiv.style.cssText = 'color:red';
+                    }
+                }
+            }
+        });
+  });
 
 function computerPlay()
 {
@@ -37,33 +61,60 @@ function playRound (playerSelection, computerSelection)
     
     if(playerSelection == computerSelection)
     {
+        updateScoreboard();
         return 'Tie game';
     }
     else if(playerSelection == 'rock')
     {
         if(computerSelection == 'paper')
+        {
+            computerRoundsWon++;
+            updateScoreboard();
             return 'You lose: Paper beats Rock';
+        }
         else
+        {
+            playerRoundsWon++;
+            updateScoreboard();
             return 'You win: Rock beats scissors';
+        }
     }
     else if(playerSelection == 'scissors')
     {
         if(computerSelection == 'paper')
+        {
+            playerRoundsWon++;
+            updateScoreboard();
             return 'You win: Scissors beats paper';
+        }
         else
-            return 'You lose: Rock beats scissors';       
+        {
+            computerRoundsWon++;
+            updateScoreboard();
+            return 'You lose: Rock beats scissors';
+        }  
+    }
+    else if(playerSelection == 'paper')
+    {
+        if(computerSelection == 'rock')
+        {
+            playerRoundsWon++;
+            updateScoreboard();
+            return 'You win: Paper beats rock';
+        }
+        else
+        {
+            computerRoundsWon++;
+            updateScoreboard();
+            return 'You lose: Scissors beats paper';
+        }  
     }
 
     //random placeholder
     return '';
 }
 
-//the case is the computer wins or you win, or it's a tie
-function game()
+function updateScoreboard()
 {
-    playerSelection = 'rock';
-    //let playerSelection = prompt('Rock, Paper, or Scissors');
-    let computerSelection = computerPlay();
-    playRound(playerSelection, computerSelection);
-
+    scoreKeeperDiv.innerText = `Computer ${computerRoundsWon}, Player ${playerRoundsWon}`
 }
